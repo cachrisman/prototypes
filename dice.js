@@ -8,10 +8,21 @@ function Dice(numberOfSides) {
     this.lastRoll = null;
 }
 
+// dicename.roll() => returns random roll
 Dice.prototype.roll = function() {
     this.lastRoll = Math.ceil(Math.random() * this.numberOfSides);
     return this.lastRoll;
 };
+
+// dicename.roll => returns random roll
+Object.defineProperties(Dice.prototype, {
+    "roll": {
+    	get: function () {
+    		this.lastRoll = Math.ceil(Math.random() * this.numberOfSides);
+    		return this.lastRoll;
+    	}
+	},
+});
 
 //Driver Code
 var d6 = new Dice(6);
@@ -19,3 +30,5 @@ d6.roll();
 
 var d20 = new Dice(20);
 d20.roll();
+
+
